@@ -16,6 +16,7 @@ window.addEventListener('load', () => {
     numeros.forEach(num => {
         const buttonNum = document.createElement('button');
         buttonNum.innerText = num;
+        buttonNum.className = 'buttonsStyles'
         numberButtons.appendChild(buttonNum);
         numberButtons.inerHTML += buttonNum;
 
@@ -33,6 +34,7 @@ window.addEventListener('load', () => {
     operadores.forEach(op =>{
         const buttonOP = document.createElement('button')
         buttonOP.innerText =  op
+        buttonOP.className = 'buttonsStyles'
         symbolButtons.appendChild(buttonOP)
         buttonOP.addEventListener('click', () =>{
             operador = buttonOP.innerText
@@ -42,7 +44,8 @@ window.addEventListener('load', () => {
     })
     const equalbutton = document.createElement('button')
     equalbutton.textContent = igual
-    equalbutton.inerHTML = equalbutton
+    equalbutton.className = 'buttonsStyles'
+    equalbutton.innerHTML = equalbutton.innerText
     symbolButtons.appendChild(equalbutton)
     equalbutton.addEventListener('click', calcular)
 })
