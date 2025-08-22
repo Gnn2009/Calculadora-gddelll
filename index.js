@@ -5,9 +5,11 @@ const pantalla = document.getElementById('spanPantalla');
 var numeros = [...Array(9).keys()].map(i => i + 1).concat(0)
 var operadores = ['+', '-', '*', '/',]
 var igual = '=';
+
 var numero1 =''
 var numero2 = ''
 var operador = ''
+
 var resultado
 
 window.addEventListener('load', () => {
@@ -19,11 +21,11 @@ window.addEventListener('load', () => {
 
         buttonNum.addEventListener('click', () => {
             if(operador === ''){
-                    numero1 += buttonNum.innerHTML
-                console.log(parseInt(numero1))
+                numero1 += buttonNum.innerText
+                pantalla.innerHTML = parseInt(numero1)
             }else{
-                numero2 += buttonNum.innerHTML
-                console.log(numero2)
+                numero2 += buttonNum.innerText
+                pantalla.innerHTML = parseInt(numero2)
             }
         });
 
@@ -34,7 +36,8 @@ window.addEventListener('load', () => {
         symbolButtons.appendChild(buttonOP)
         buttonOP.addEventListener('click', () =>{
             operador = buttonOP.innerText
-            console.log('El operador es q',operador)
+            pantalla.innerHTML = ''
+            console.log('El operador es: ',operador)
         })
     })
     const equalbutton = document.createElement('button')
@@ -43,30 +46,30 @@ window.addEventListener('load', () => {
     symbolButtons.appendChild(equalbutton)
     equalbutton.addEventListener('click', calcular)
 })
-
 function calcular(){
     if(numero1 && numero2 && operador){
         switch (operador){
             case '+':
-                console.log(parseInt(numero1) + parseInt(numero2))
+                resultado = parseInt(numero1) + parseInt(numero2)
                 break;
             case '-':
-                console.log (parseInt(numero1) - parseInt(numero2))
+                resultado = parseInt(numero1) - parseInt(numero2)
                 break;
             case '*':
-                console.log (parseInt(numero1) * parseInt(numero2))
+                resultado = parseInt(numero1) * parseInt(numero2)
                 break;
             case '/':
-                console.log (parseInt(numero1) / parseInt(numero2))
+                resultado = parseInt(numero1) / parseInt(numero2)
                 break;
         }
-    
+        pantalla.innerHTML = resultado
+        console.log(resultado)
         numero1 = ''
         numero2 = ''
         operador = ''
-    }else{
-        if(numero1 === '' || numero2 === '' || operador === ""){
-            alert("falta algun dato")
-        }
+    }else if(numero1 === '' || numero2 === '' || operador === ""){
+        alert("falta algun dato")
+        retur
     }
+    
 }
