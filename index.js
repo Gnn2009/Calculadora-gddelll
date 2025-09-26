@@ -4,14 +4,10 @@ const spnaPantallaT = document.getElementById("spanPantalla");
 const pantalla = document.getElementById("pantalla");
 
 var numeros = [...Array(9).keys()].map((i) => i + 1).concat(0);
+var operacion = ""
+var resultado = ""
 var operadores = ["+", "-", "*", "/"];
 var igual = "=";
-
-var numero1 = "";
-var numero2 = "";
-var operador = "";
-
-var resultado;
 
 window.addEventListener("load", () => {
     numeros.forEach((num) => {
@@ -22,18 +18,10 @@ window.addEventListener("load", () => {
         numberButtons.inerHTML += buttonNum;
 
         buttonNum.addEventListener("click", () => {
-            if (operador === "") {
-                numero1 += buttonNum.innerText;
-            } else {
-                numero2 += buttonNum.innerText;
-                spnaPantallaT.innerHTML = parseInt(numero2);
-            }
-            spnaPantallaT.innerHTML = parseInt(numero1);
-            pantalla.classList.add("anamiacionPantalla");
-            setTimeout(() => {
-                pantalla.classList.remove("anamiacionPantalla");
-            }, 200);
-        });
+            operacion += buttonNum.innerText;
+            console.log(operacion);
+            spnaPantallaT.innerHTML = operacion;
+            animarPantalla()});
     });
 operadores.forEach((op) => {
     const buttonOP = document.createElement("button");
@@ -41,11 +29,8 @@ operadores.forEach((op) => {
     buttonOP.className = "buttonsStyles";
     symbolButtons.appendChild(buttonOP);
     buttonOP.addEventListener("click", () => {
-        operador = buttonOP.innerText;
-        pantalla.classList.add("anamiacionPantalla");
-        setTimeout(() => {
-        pantalla.classList.remove("anamiacionPantalla");
-    }, 200);
+    operacion += buttonOP.innerText;
+    animarPantalla()
     spnaPantallaT.innerHTML = "";
     console.log("El operador es: ", operador);
     });
@@ -59,34 +44,15 @@ operadores.forEach((op) => {
     equalbutton.addEventListener("click", calcular);
 });
 function calcular() {
-    if (numero1 === "" || numero2 === "" || operador === "") {
-        alert("ERRO");
-        return;
-    }
-    spnaPantallaT.innerHTML = parseInt(numero1);
+    resultado = math.evaluate(operacion)
+    animarPantalla();
+    spnaPantallaT.innerHTML = resultado;
+    console.log(resultado);
+    operacion = ""
+}
+function animarPantalla() {
     pantalla.classList.add("anamiacionPantalla");
     setTimeout(() => {
         pantalla.classList.remove("anamiacionPantalla");
     }, 200);
-    if (numero1 && numero2 && operador) {
-    switch (operador) {
-        case "+":
-            resultado = parseInt(numero1) + parseInt(numero2);
-        break;
-        case "-":
-            resultado = parseInt(numero1) - parseInt(numero2);
-        break;
-        case "*":
-            resultado = parseInt(numero1) * parseInt(numero2);
-        break;
-        case "/":
-            resultado = parseInt(numero1) / parseInt(numero2);
-        break;
-    }
-    spnaPantallaT.innerHTML = resultado;
-    console.log(resultado);
-    numero1 = "";
-    numero2 = "";
-    operador = "";
-    }
 }
