@@ -31,7 +31,7 @@ body {
     justify-content: center;
     align-items: center;
     font-family: Regnesburg;
-    background-image: url("/Calculadora-gddelll/wallhaven.png");
+    background-image: url("wallpaper.jpg");
     background-position: center center;
     background-size: cover;
     background-repeat: no-repeat;
@@ -53,7 +53,7 @@ body {
 #pantalla {
     transition: all 0.2s;
     display: flex;
-    background-color: #292929;
+    background-color: #637082;
     width: 360px;
     height: 100px;
     margin: 20px;
@@ -81,7 +81,7 @@ body {
     font-family: Regnesburg;
     font-size: 30px;
     color: white;
-    background-color: #474747;
+    background-color: #534A61;
     border-radius: 10px;
     border: none;
     width: 80px;
